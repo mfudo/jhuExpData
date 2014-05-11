@@ -1,5 +1,5 @@
-# Global Active Power histogram
-# Plot 1
+# Sub metering vs time
+# Plot 3
 
 setwd("~/jhuExpData")
 pwr <- read.table("hs_pwr.txt", sep=";", header=T, stringsAsFactors=F, na.string=c("?"))
@@ -8,4 +8,6 @@ pwr$Time <- strptime(pwr$Time)
 
 pwr_sub <- subset(pwr, pwr$Date > as.Date("2007-02-01") & pwr$Date < as.Date("2007-02-02"))
 
-with(pwr_sub, hist(pwr_sub$Global_active_power, main="Global Active Power", breaks=12, col="red", xlab="Global Active Power (kilowatts)", ylab="Frequency"))
+plot(pwr_sub$Time, pwr_sub$Sub_metering_1)
+with line(pwr_sub$Time, pwr_sub$Sub_metering_2, col="red")
+with line(pwr_sub$Time, pwr_sub$Sub_metering_3, col="blue")
